@@ -1,1 +1,177 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>junsten.se</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', 'Menlo', 'Monaco', monospace;
+            line-height: 1.6;
+            color: #00ff00;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .terminal {
+            background: #000;
+            border: 1px solid #333;
+            padding: 30px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .prompt {
+            color: #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .prompt::before {
+            content: '> ';
+            color: #00ff00;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            font-weight: normal;
+            margin-bottom: 30px;
+            color: #00ff00;
+        }
+
+        .menu {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .menu li {
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .menu li:hover {
+            padding-left: 10px;
+            color: #00dd00;
+        }
+
+        .menu a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-item::before {
+            content: '[ ';
+        }
+
+        .menu-item::after {
+            content: ' ]';
+        }
+
+        .submenu {
+            display: none;
+            margin-left: 20px;
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 1px solid #333;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .submenu li {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .submenu li::before {
+            content: '└─ ';
+            color: #666;
+        }
+
+        .footer {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+        }
+
+        .blink {
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            .terminal {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="terminal">
+            <div class="prompt">junsten.se</div>
+            <h1>Welcome<span class="blink">_</span></h1>
+
+            <ul class="menu">
+                <li class="menu-item" onclick="toggleSubmenu('projects')">projects</li>
+                <ul class="submenu" id="projects">
+                    <li><a href="/squadshuffle/">squadshuffle</a></li>
+                </ul>
+
+                <li class="menu-item"><a href="mailto:tobias@junsten.se">contact</a></li>
+                
+                <li class="menu-item"><a href="https://github.com/tobiasjunsten" target="_blank">github</a></li>
+            </ul>
+
+            <div class="footer">
+                © 2025 junsten.se
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubmenu(id) {
+            const submenu = document.getElementById(id);
+            submenu.classList.toggle('active');
+        }
+
+        // Auto-expand projects menu
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('projects').classList.add('active');
+        });
+    </script>
+</body>
+</html>
